@@ -2,6 +2,10 @@ from pico2d import *
 
 # Game object class here
 class Grass:
+    # 생성자 함수 : 객체의 초기 상태를 설정
+    def __init__(self):
+        # 모양없는 납작한 붕어빵의 초기모습결정
+        self.image = load_image('grass.png')
     pass
 
 def handle_events():
@@ -15,10 +19,13 @@ def handle_events():
 
 def reset_world():
     global running
+    global grass
 
     running = True
+    grass = Grass()     # 잔디를 찍어낸다, 생성한다
 
 def update_world():
+
     pass
 
 def render_world():
