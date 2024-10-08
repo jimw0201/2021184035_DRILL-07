@@ -26,6 +26,35 @@ class Boy:
     def draw(self):
         self.image.clip_draw(self.frame*100, 0, 100, 100, self.x, self.y)
 
+class Ball21:
+    def __init__(self):
+        self.x, self.y = random.randint(0, 800), 599
+        self.image = load_image('ball21x21.png')
+
+    def update(self):
+        self.y -= random.randint(1, 10)
+        if (self.y > 51):
+            self.y -= random.randint(1, 10)
+        else:
+            self.y = 51
+
+    def draw(self):
+        self.image.clip_draw(0, 0, 21, 21, self.x, self.y)
+
+class Ball41:
+    def __init__(self):
+        self.x, self.y = random.randint(0, 800), 599
+        self.image = load_image('ball41x41.png')
+
+    def update(self):
+        if (self.y > 71):
+            self.y -= random.randint(1, 10)
+        else:
+            self.y = 71
+
+    def draw(self):
+        self.image.clip_draw(0, 0, 41, 41, self.x, self.y)
+
 def handle_events():
     global running
     events = get_events()
@@ -39,15 +68,25 @@ def reset_world():
     global running
     global grass
     global team
+    global ball21
+    global ball41
 
     running = True
     grass = Grass()     # 잔디를 찍어낸다, 생성한다
     team = [Boy() for i in range(10)]
 
+    ball21 = [Ball21() for i in range(10)]
+
+    ball41 = [Ball41() for i in range(10)]
+
 def update_world():
     grass.update()      # 객체의 상태를 업데이트
     for boy in team:
         boy.update()
+    for ballx21 in ball21:
+        ballx21.update()
+    for ballx41 in ball41:
+        ballx41.update()
     pass
 
 def render_world():
@@ -55,14 +94,19 @@ def render_world():
     grass.draw()
     for boy in team:
         boy.draw()
+    for ballx21 in ball21:
+        ballx21.draw()
+    for ballx41 in ball41:
+        ballx41.draw()
     update_canvas()
 
 open_canvas()
 
 # initialization code
 reset_world()
-
 # game main loop code
+
+
 
 while running:
     handle_events()
