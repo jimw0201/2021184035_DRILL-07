@@ -60,10 +60,9 @@ def render_world():
 open_canvas()
 
 # initialization code
+reset_world()
 
 # game main loop code
-
-reset_world()
 
 while running:
     handle_events()
