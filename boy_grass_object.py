@@ -6,6 +6,11 @@ class Grass:
     def __init__(self):
         # 모양없는 납작한 붕어빵의 초기모습결정
         self.image = load_image('grass.png')
+
+    def draw(self):
+        self.image.draw(400, 30)
+
+    def update(self): pass
     pass
 
 def handle_events():
@@ -25,11 +30,12 @@ def reset_world():
     grass = Grass()     # 잔디를 찍어낸다, 생성한다
 
 def update_world():
-
+    grass.update()
     pass
 
 def render_world():
     clear_canvas()
+    grass.draw()
     update_canvas()
     pass
 
